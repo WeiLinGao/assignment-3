@@ -28,6 +28,42 @@ class App extends Component {
     };
   }
 
+
+  addCredit =(credit)=>
+  {
+    this.setState({creditList:[...this.state.creditList,credit]});
+  };
+
+  addDebit=(debit)=>
+  {
+    this.setState({debitList:[...this.state.debitList,debit]});
+  };
+
+
+  componentDidMount()
+  {
+    fetch('https://johnnylaicode.github.io/api/credits.json')
+    .then((response) => response.json())
+    .then((credit) => 
+    {
+      this.addCredit(credit);
+    });
+
+    fetch('https://johnnylaicode.github.io/api/debits.json')
+    .then((response) => response.json())
+    .then((debit) => 
+    {
+      this.addDebit(debit);
+    });
+  }
+
+
+
+
+
+
+
+
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
     const newUser = {...this.state.currentUser};
